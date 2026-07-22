@@ -1,5 +1,5 @@
 # build stage
-FROM node:24-alpine as build
+FROM node:24-alpine AS build
 WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@latest --activate
 
@@ -11,7 +11,7 @@ RUN pnpm build
 RUN pnpm prune --prod
 
 # production stage
-FROM node:24-alpine as production
+FROM node:24-alpine AS production
 WORKDIR /app
 
 COPY package.json ./
