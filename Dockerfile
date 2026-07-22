@@ -1,4 +1,4 @@
-// build stage
+# build stage
 FROM node:24-alpine as build
 WORKDIR /app
 RUN corepack enable && corepack prepare pnpm@latest --activate
@@ -10,7 +10,7 @@ RUN pnpm build
 
 RUN pnpm prune --prod
 
-// production stage
+# production stage
 FROM node:24-alpine as production
 WORKDIR /app
 
