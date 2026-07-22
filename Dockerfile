@@ -8,8 +8,6 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 RUN pnpm build
 
-RUN pnpm prune --prod
-
 # production stage
 FROM node:24-alpine AS production
 WORKDIR /app
