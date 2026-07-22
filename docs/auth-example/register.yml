@@ -1,0 +1,25 @@
+info:
+  name: register
+  type: http
+  seq: 2
+
+http:
+  method: POST
+  url: "{{current_url}}/auth/register"
+  body:
+    type: json
+    data: |-
+      {
+        "username": "testuser1",
+        "password": "password",
+        "name": "Deyvi",
+        "last_name": "Gomez",
+        "profile": "https://res.cloudinary.com/drpvxaxr2/image/upload/v1784733775/wolf_bey22l.jpg"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

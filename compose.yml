@@ -1,0 +1,9 @@
+services:
+  auth-db:
+    image: mongo:8.0.3
+    container_name: auth-db
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: dbuser
+      MONGO_INITDB_ROOT_PASSWORD: password

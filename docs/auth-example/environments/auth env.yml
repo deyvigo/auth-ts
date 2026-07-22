@@ -1,0 +1,4 @@
+name: auth env
+variables:
+  - name: current_url
+    value: http://localhost:3000/api/v1
