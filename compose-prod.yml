@@ -1,0 +1,38 @@
+services:
+  auth-db:
+    image: mongo:8.0.3
+    container_name: auth-db
+    env_file:
+      - .env
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - internal
+
+  auth-backend:
+    build: .
+    container_name: auth-backend
+    depends_on:
+      auth-db:
+        condition: service_healthy
+    env_file:
+      - .env
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=web'
+      - 'traefik.http.routers.auth-backend.rule=Host(`auth.deyvigo.online`)'
+      - 'traefik.http.routers.auth-backend.entrypoints=web'
+      - 'traefik.http.routers.auth-backend.tls.certresolver=myresolver'
+      - 'traefik.http.services.auth-backend.loadbalancer.server.port=3000'
+    networks:
+      - web
+      - internal
+
+networks:
+  web:
+    external: true
+  internal:
+    driver: bridge
