@@ -1,0 +1,25 @@
+info:
+  name: upload profile image
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{current_url}}/user/profile"
+  body:
+    type: multipart-form
+    data:
+      - name: image
+        type: file
+        value:
+          - /Users/deyvigo/dev/auth/mocks/profiles/kitsu.jpg
+        contentType: image/jpeg
+  auth:
+    type: bearer
+    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjZhNjFiODEzYWQ4MmQ2N2I2MTMyN2Q5YiIsInVzZXJuYW1lIjoidGVzdHVzZXIyIiwiaWF0IjoxNzg0Nzg5MDM4LCJleHAiOjE3ODUwNDgyMzh9.On5_GZAGfoLz-4mW5TJpZeNvgTGWZJr6OKCuLTvd76c
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5

@@ -3,15 +3,35 @@ import { ZodError, type ZodType } from 'zod'
 
 import { ValidationError } from '@/utils/error'
 
-type DataSource = 'body' | 'query' | 'params'
+type DataSource = 'body' | 'query' | 'params' | 'file'
 
-export const validate = (schema: ZodType, dataSource: DataSource = 'body') => {
+type ValidatedFile = Express.Multer.File
+
+export const validate = <T extends ValidatedFile | Record<string, any>>(
+  schema: ZodType<T>,
+  dataSource: DataSource = 'body',
+) => {
   return (req: Request, res: Response, next: NextFunction) => {
     try {
-      const data = req[dataSource]
+      let data: any
+
+      if (dataSource === 'file') {
+        if (!req.file) {
+          throw new ValidationError('File is required', { file: 'File is required' })
+        }
+        data = req.file
+      } else {
+        data = req[dataSource]
+      }
+
       const parsed = schema.parse(data)
 
-      req[dataSource] = parsed
+      if (dataSource === 'file') {
+        req.file = parsed as Express.Multer.File
+      } else {
+        req[dataSource] = parsed
+      }
+
       next()
     } catch (err: any) {
       if (err instanceof ZodError) {

@@ -1,12 +1,13 @@
 import jwt from 'jsonwebtoken'
 
 import type { UserDocument } from '@/models/user'
-import { UnauthorizedError } from './error'
+import { UnauthorizedError } from '@/utils/error'
+
+process.loadEnvFile()
 
 const JWT_SECRET = process.env.SECRET_KEY || 'rawpasswordkasdkalkdas'
 
 export const generateToken = (user: UserDocument) => {
-  console.log(JWT_SECRET)
   return jwt.sign(
     {
       id: user._id,

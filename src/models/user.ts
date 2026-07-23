@@ -39,7 +39,7 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>(
     },
     profile: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   { timestamps: true },

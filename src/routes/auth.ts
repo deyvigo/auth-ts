@@ -22,9 +22,9 @@ router.post(
   '/register',
   validate(registerRequestSchema, 'body'),
   asyncHandler(async (req: Request, res: Response) => {
-    const { username, password, name, lastName, profile } = req.body as IUserRegisterRequest
-    const user = await registerUser({ username, password, name, lastName, profile })
-    res.status(201).send({ user: user })
+    const { username, password, name, lastName } = req.body as IUserRegisterRequest
+    const user = await registerUser({ username, password, name, lastName })
+    res.status(201).send({ ...user })
   }),
 )
 

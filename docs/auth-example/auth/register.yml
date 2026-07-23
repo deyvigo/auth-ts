@@ -1,7 +1,7 @@
 info:
   name: register
   type: http
-  seq: 2
+  seq: 1
 
 http:
   method: POST
@@ -10,11 +10,10 @@ http:
     type: json
     data: |-
       {
-        "username": "testuser1",
+        "username": "testuser2",
         "password": "password",
         "name": "Deyvi",
-        "last_name": "Gomez",
-        "profile": "https://res.cloudinary.com/drpvxaxr2/image/upload/v1784733775/wolf_bey22l.jpg"
+        "last_name": "Gomez"
       }
   auth: inherit
 

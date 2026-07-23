@@ -3,13 +3,13 @@ import type { IUserLoginRequest, IUserRegisterRequest } from '@/types/auth'
 import { ResourceNotFoundError, UnauthorizedError, UsernameAlreadyTakenError } from '@/utils/error'
 import { generateToken } from '@/utils/jwt-token'
 
-export const registerUser = async ({ username, password, name, lastName, profile }: IUserRegisterRequest) => {
+export const registerUser = async ({ username, password, name, lastName }: IUserRegisterRequest) => {
   const existingUser = await User.findOne({ username })
   if (existingUser) {
     throw new UsernameAlreadyTakenError('Username already taken')
   }
 
-  const user = await User.create({ username, password, name, lastName, profile })
+  const user = await User.create({ username, password, name, lastName })
   const { password: _, ...userData } = user.toJSON()
   return userData
 }

@@ -1,7 +1,7 @@
 name: auth env
 variables:
   - name: current_url
-    value: http://localhost:8080/api/v1
-    disabled: true
+    value: http://localhost:3000/api/v1
   - name: current_url
     value: https://auth.deyvigo.online/api/v1
+    disabled: true

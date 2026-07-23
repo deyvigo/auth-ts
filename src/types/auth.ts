@@ -3,7 +3,6 @@ export interface IUserRegisterRequest {
   password: string
   name: string
   lastName: string
-  profile: string
 }
 
 export interface IUserLoginRequest {
