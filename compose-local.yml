@@ -21,19 +21,11 @@ services:
         condition: service_healthy
     env_file:
       - .env
-    labels:
-      - 'traefik.enable=true'
-      - 'traefik.docker.network=web'
-      - 'traefik.http.routers.auth-backend.rule=Host(`auth.deyvigo.online`)'
-      - 'traefik.http.routers.auth-backend.entrypoints=web'
-      - 'traefik.http.routers.auth-backend.tls.certresolver=myresolver'
-      - 'traefik.http.services.auth-backend.loadbalancer.server.port=3000'
+    ports:
+      - '8080:3000'
     networks:
-      - web
       - internal
 
 networks:
-  web:
-    external: true
   internal:
     driver: bridge

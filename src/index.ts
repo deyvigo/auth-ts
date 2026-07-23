@@ -22,7 +22,7 @@ app.use(responseSerializer)
 // main router
 app.use('/api/v1', appRouter)
 
-app.get('/health', (_, res: Response) => {
+app.get('/api/v1/health', (_, res: Response) => {
   res.send({ message: 'Hello World' })
 })
 
