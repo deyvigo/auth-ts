@@ -25,7 +25,8 @@ services:
       - 'traefik.enable=true'
       - 'traefik.docker.network=web'
       - 'traefik.http.routers.auth-backend.rule=Host(`auth.deyvigo.online`)'
-      - 'traefik.http.routers.auth-backend.entrypoints=web'
+      - 'traefik.http.routers.auth-backend.entrypoints=websecure'
+      - 'traefik.http.routers.auth-backend.tls=true'
       - 'traefik.http.routers.auth-backend.tls.certresolver=myresolver'
       - 'traefik.http.services.auth-backend.loadbalancer.server.port=3000'
     networks:
